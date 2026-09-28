@@ -1,0 +1,82 @@
+{% extends 'events/base.html' %}
+
+{% block title %}Student Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-card">
+        <h1>Student Profile</h1>
+
+        <div class="two-column">
+            <div>
+                <h2>Edit Profile</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="update_profile" value="1">
+
+                    <div class="form-group">
+                        <label for="id_full_name">Full Name</label>
+                        {{ profile_form.full_name }}
+                        {% if profile_form.full_name.errors %}
+                            <div class="form-feedback">{{ profile_form.full_name.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_email">Email</label>
+                        {{ profile_form.email }}
+                        {% if profile_form.email.errors %}
+                            <div class="form-feedback">{{ profile_form.email.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_phone_number">Phone Number</label>
+                        {{ profile_form.phone_number }}
+                        {% if profile_form.phone_number.errors %}
+                            <div class="form-feedback">{{ profile_form.phone_number.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn">Update Profile</button>
+                </form>
+            </div>
+
+            <div>
+                <h2>Change Password</h2>
+                <form method="post" id="passwordForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="change_password" value="1">
+
+                    <div class="form-group">
+                        <label for="id_old_password">Old Password</label>
+                        {{ password_form.old_password }}
+                        {% if password_form.old_password.errors %}
+                            <div class="form-feedback">{{ password_form.old_password.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_new_password">New Password</label>
+                        {{ password_form.new_password }}
+                        {% if password_form.new_password.errors %}
+                            <div class="form-feedback">{{ password_form.new_password.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_confirm_new_password">Confirm New Password</label>
+                        {{ password_form.confirm_new_password }}
+                        {% if password_form.confirm_new_password.errors %}
+                            <div class="form-feedback">{{ password_form.confirm_new_password.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div id="passwordFeedback" class="form-feedback"></div>
+                    <button type="submit" class="btn secondary">Change Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
