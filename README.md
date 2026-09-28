@@ -31,8 +31,6 @@ An AI-powered web application that helps users manage emails efficiently using A
 
 To build an intelligent email management system that reduces the time required to read, organize, understand, and respond to emails using AI.
 
-## 👩‍💻 Author
 
-**Kavya M Arali**
 
 Computer Science Engineering Student
