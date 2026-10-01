@@ -1,0 +1,14 @@
+{% extends "events/base.html" %}
+{% block title %}Delete {{ event.name }} | Campus Events{% endblock %}
+{% block content %}
+<section class="confirm-page">
+    <p class="eyebrow">EVENT MANAGEMENT</p>
+    <h1>Delete this event?</h1>
+    <p class="intro">“{{ event.name }}” will be permanently removed. This action cannot be undone.</p>
+    <form method="post" class="form-actions">
+        {% csrf_token %}
+        <button class="button button-danger" type="submit">Delete event</button>
+        <a class="button button-quiet" href="{% url 'events:event_detail' event.pk %}">Keep event</a>
+    </form>
+</section>
+{% endblock %}

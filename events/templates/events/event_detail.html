@@ -1,0 +1,21 @@
+{% extends "events/base.html" %}
+{% block title %}{{ event.name }} | Campus Events{% endblock %}
+{% block content %}
+<article class="detail-page">
+    <a class="back-link" href="{% url 'events:event_list' %}">← All events</a>
+    <div class="detail-heading"><div><p class="eyebrow">{{ event.date|date:"l, F j, Y" }}</p><h1>{{ event.name }}</h1><p class="detail-place">{{ event.time|time:"g:i A" }} <span aria-hidden="true">·</span> {{ event.venue }}</p></div>
+        {% if user.is_staff %}<div class="detail-actions"><a class="button button-quiet" href="{% url 'events:edit_event' event.pk %}">Edit</a><a class="button button-danger" href="{% url 'events:delete_event' event.pk %}">Delete</a></div>{% endif %}
+    </div>
+    <div class="detail-grid">
+        <section class="description"><h2>About this event</h2><p>{{ event.description|linebreaksbr }}</p></section>
+        <aside class="event-facts" aria-label="Event information">
+            <div class="fact"><span>Venue</span><strong>{{ event.venue }}</strong></div>
+            <div class="fact"><span>Maximum participants</span><strong>{{ event.max_participants }}</strong></div>
+            <div class="fact"><span>Available seats</span><strong>{{ event.available_seats }}</strong></div>
+            <div class="fact"><span>Registration deadline</span><strong>{{ event.registration_deadline|date:"M j, Y" }}</strong></div>
+            <div class="registration-state {% if event.registration_is_open %}is-open{% else %}is-closed{% endif %}">{% if event.registration_is_open %}Registration open{% else %}Registration closed{% endif %}</div>
+            {% if event.registration_is_open %}<button class="button button-primary register-button" type="button" data-event-id="{{ event.pk }}">Register</button>{% else %}<button class="button button-primary register-button" type="button" disabled>Registration closed</button>{% endif %}
+        </aside>
+    </div>
+</article>
+{% endblock %}

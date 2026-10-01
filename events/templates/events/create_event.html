@@ -1,0 +1,22 @@
+{% extends "events/base.html" %}
+{% block title %}Create event | Campus Events{% endblock %}
+{% block content %}
+<div class="form-page">
+    <a class="back-link" href="{% url 'events:event_list' %}">← All events</a>
+    <p class="eyebrow">EVENT MANAGEMENT</p>
+    <h1>Create an event</h1>
+    <p class="intro">Add the details students need to plan their visit.</p>
+    <form method="post" class="event-form">
+        {% csrf_token %}
+        {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+        {% for field in form %}
+            <div class="field{% if field.errors %} field-invalid{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+        {% endfor %}
+        <div class="form-actions"><button class="button button-primary" type="submit">Create event</button><a class="button button-quiet" href="{% url 'events:event_list' %}">Cancel</a></div>
+    </form>
+</div>
+{% endblock %}
