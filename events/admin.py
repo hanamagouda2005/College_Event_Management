@@ -8,3 +8,4 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ("name", "date", "time", "venue", "max_participants")
     list_filter = ("date",)
     search_fields = ("name", "venue")
+# Register your models here.
