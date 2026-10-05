@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123d35">
+    <title>Campus Calendar | College Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/js/app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#events" aria-label="Campus Calendar home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>campus<span class="brand-light">calendar</span></span>
+      </a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a class="nav-link is-active" href="#events" data-nav="events">Discover</a>
+        <a class="nav-link" href="#my-events" data-nav="my-events">My events</a>
+      </nav>
+      <div class="header-student" id="header-student"></div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <section class="loading-state" aria-live="polite">Loading campus events...</section>
+    </main>
+
+    <dialog class="registration-dialog" id="registration-dialog" aria-labelledby="registration-title">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">SAVE YOUR SEAT</p>
+          <h2 id="registration-title">Your details</h2>
+          <p class="dialog-event" id="dialog-event-name"></p>
+        </div>
+        <button class="icon-button" type="button" data-close-dialog aria-label="Close registration form" title="Close">&times;</button>
+      </div>
+      <div class="form-alert" id="form-alert" role="alert" hidden></div>
+      <form id="registration-form" novalidate>
+        <label class="field field-wide">Student name<input name="name" autocomplete="name" maxlength="100" required placeholder="Your full name"></label>
+        <label class="field">Student ID / roll number<input name="studentId" autocomplete="off" maxlength="40" required placeholder="e.g. 24CS014"></label>
+        <label class="field">Email address<input name="email" type="email" autocomplete="email" required placeholder="you@college.edu"></label>
+        <label class="field">Phone number<input name="phone" type="tel" autocomplete="tel" required placeholder="+1 555 012 3456"></label>
+        <label class="field">Department<select name="department" required><option value="">Select department</option><option>Arts & Humanities</option><option>Business</option><option>Computer Science</option><option>Engineering</option><option>Life Sciences</option><option>Social Sciences</option><option>Other</option></select></label>
+        <label class="field">Year / semester<select name="yearSemester" required><option value="">Select year</option><option>Year 1</option><option>Year 2</option><option>Year 3</option><option>Year 4</option><option>Graduate</option></select></label>
+        <button class="button button-primary submit-button" type="submit">Confirm registration <span aria-hidden="true">&#8594;</span></button>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
